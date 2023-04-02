@@ -20,9 +20,11 @@
     "@mantine/next": "^6.0.5",
     "@mantine/notifications": "^6.0.5",
     "@mantine/nprogress": "^6.0.5",
+    "@tabler/icons-react": "^2.13.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
+    "@types/react-scroll": "^1.8.6",
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^7.1.0",
     "eslint": "8.37.0",
@@ -30,6 +32,7 @@
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-scroll": "^1.8.9",
     "typescript": "5.0.3"
   }
 }
