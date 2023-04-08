@@ -41,6 +41,17 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 					withNormalizeCSS
 					theme={{
 						colorScheme,
+						primaryColor: 'red',
+						defaultGradient: { deg: 45, from: 'red', to: 'orange' },
+						components: {
+							switch: {
+								styles: {
+									input: {
+										cursor: 'pointer',
+									},
+								},
+							},
+						},
 					}}
 				>
 					{getLayout(<Component {...pageProps} />)}

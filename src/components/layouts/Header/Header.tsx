@@ -13,11 +13,13 @@ import {
 	Switch,
 	useMantineTheme,
 	Drawer,
+	Text,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown } from '@tabler/icons-react'
 import { IconSun, IconMoonStars } from '@tabler/icons-react'
 import { HeaderSearchProps } from '@/types'
+import { TWHomeBuilderBucketURL } from '@/config'
 
 const useStyles = createStyles((theme) => ({
 	inner: {
@@ -63,6 +65,12 @@ const useStyles = createStyles((theme) => ({
 
 	linkLabel: {
 		marginRight: rem(5),
+	},
+
+	menuLabel: {
+		'&:hover': {
+			color: theme.primaryColor,
+		},
 	},
 }))
 
@@ -118,7 +126,7 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 				className={classes.link}
 				onClick={close}
 			>
-				{link.label}
+				<Text className={classes.menuLabel}>{link.label}</Text>
 			</Link>
 		)
 	})
@@ -127,7 +135,11 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		<Header height={56}>
 			<Container>
 				<div className={classes.inner}>
-					<Avatar size={28} />
+					<Avatar
+						src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
+						size={28}
+						radius={2}
+					/>
 					<Group spacing={5} className={classes.links}>
 						{items}
 						<Switch

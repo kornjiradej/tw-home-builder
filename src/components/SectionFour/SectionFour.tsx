@@ -1,4 +1,4 @@
-import { baseImageUrlS3 } from '@/config'
+import { TemplateBucketURL } from '@/config'
 import {
 	Badge,
 	Button,
@@ -35,7 +35,7 @@ export const SectionFour = () => {
 						<Card shadow='sm' p='lg' style={{ height: '100%' }}>
 							<Card.Section>
 								<Image
-									src={`${baseImageUrlS3}/lime-welcome.png`}
+									src={`${TemplateBucketURL}/lime-welcome.png`}
 									alt={'sample1'}
 								/>
 							</Card.Section>
@@ -58,7 +58,7 @@ export const SectionFour = () => {
 						<Card shadow='sm' p='lg' style={{ height: '100%' }}>
 							<Card.Section>
 								<Image
-									src={`${baseImageUrlS3}/lime-canoeing.png`}
+									src={`${TemplateBucketURL}/lime-canoeing.png`}
 									alt={'sample1'}
 								/>
 							</Card.Section>
@@ -82,7 +82,7 @@ export const SectionFour = () => {
 						<Card shadow='sm' p='lg' style={{ height: '100%' }}>
 							<Card.Section>
 								<Image
-									src={`${baseImageUrlS3}/lime-message-sent.png`}
+									src={`${TemplateBucketURL}/lime-message-sent.png`}
 									alt={'sample1'}
 								/>
 							</Card.Section>

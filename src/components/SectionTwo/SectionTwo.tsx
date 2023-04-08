@@ -41,7 +41,7 @@ const carouselList = [
 
 const useStyles = createStyles((theme) => ({
 	paper: {
-		background: theme.colors.blue[5],
+		background: theme.primaryColor,
 		height: '100%',
 		color: theme.colors.gray[0],
 	},
@@ -55,7 +55,7 @@ export const SectionTwo = () => {
 				<Text color='write' align='center' mb='15px'>
 					<Title order={1}>Explain something in this carousel</Title>
 				</Text>
-				<Text color='black' align='center' mb='25px'>
+				<Text color='write' align='center' mb='25px'>
 					You can insert images or some texts if you need.
 				</Text>
 				<Carousel
