@@ -6,11 +6,11 @@ const menusHeader: HeaderSearchProps = {
 	links: [
 		{
 			link: 'section-one',
-			label: 'About',
+			label: 'service',
 		},
 		{
 			link: 'section-two',
-			label: 'Carousel',
+			label: 'reviews',
 		},
 		{
 			link: 'section-three',

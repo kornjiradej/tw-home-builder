@@ -42,16 +42,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 					theme={{
 						colorScheme,
 						primaryColor: 'red',
-						defaultGradient: { deg: 45, from: 'red', to: 'orange' },
-						components: {
-							switch: {
-								styles: {
-									input: {
-										cursor: 'pointer',
-									},
-								},
-							},
-						},
+						defaultGradient: { deg: 45, from: 'red', to: 'yellow' },
 					}}
 				>
 					{getLayout(<Component {...pageProps} />)}

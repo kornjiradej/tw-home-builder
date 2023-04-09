@@ -228,6 +228,13 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@lottiefiles/react-lottie-player@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/react-lottie-player/-/react-lottie-player-3.5.3.tgz#e7e848f29577bc4eede87d677a0054de29378127"
+  integrity sha512-6pGbiTMjGnPddR1ur8M/TIDCiogZMc1aKIUbMEKXKAuNeYwZ2hvqwBJ+w5KRm88ccdcU88C2cGyLVsboFlSdVQ==
+  dependencies:
+    lottie-web "^5.10.2"
+
 "@mantine/carousel@^6.0.5":
   version "6.0.5"
   resolved "https://registry.npmjs.org/@mantine/carousel/-/carousel-6.0.5.tgz"
@@ -275,6 +282,13 @@
   resolved "https://registry.npmjs.org/@mantine/hooks/-/hooks-6.0.5.tgz"
   integrity sha512-PZMGYK1lwKqpyLal6il2XnE19CRWTPPwjG5r5CbL5lGAVmbucd/XhK1abTuBYzid7usJ4pIxlp/gmdcRLg14TQ==
 
+"@mantine/modals@^6.0.6":
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@mantine/modals/-/modals-6.0.6.tgz#5e59c398fbd8a458a0e84fe488f9b2d3e1ff25ea"
+  integrity sha512-1Wqxk/yjq7feLsPuIASZBAU26MQNc0W3COsR1RjrdIjkA7w31J5d6bUBr3W0P/zKOCxx6UGh4CTXR7p0iNSjLw==
+  dependencies:
+    "@mantine/utils" "6.0.6"
+
 "@mantine/next@^6.0.5":
   version "6.0.5"
   resolved "https://registry.npmjs.org/@mantine/next/-/next-6.0.5.tgz"
@@ -318,6 +332,11 @@
   version "6.0.5"
   resolved "https://registry.npmjs.org/@mantine/utils/-/utils-6.0.5.tgz"
   integrity sha512-P2FVcBd2oZ9ANOsZUtTwJ4+FV6NgCRE5B7trsT8gEFUbMeQLietcsZEgAe5xhzEu9Afp5V8X8a+E9yx1blMpNg==
+
+"@mantine/utils@6.0.6":
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.6.tgz#19bff743cf69c0c0b39664a633cb7827bc996833"
+  integrity sha512-Pd+ZTJ3maXb1zihZzHpo00XLwcKEg+ZGLPFG5vg/YafLDDWIhgV6snTFVKsPb2cunVjOwzbKcvlmCHXBe97mTQ==
 
 "@next/env@13.2.4":
   version "13.2.4"
@@ -2074,6 +2093,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-web@^5.10.2:
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.10.2.tgz#a1c952b6734759fcd369eba73b6b7e3d9a76ce0b"
+  integrity sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==
 
 lru-cache@^6.0.0:
   version "6.0.0"

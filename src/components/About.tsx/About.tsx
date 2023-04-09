@@ -23,12 +23,13 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	},
 
 	container: {
-		height: rem(height - 56),
+		height: rem(height - 56), // 56 is the height of the navigation bar
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
-		alignItems: 'flex-start',
-		paddingBottom: `calc(${theme.spacing.lg} * 9)`,
+		alignItems: 'center',
+		paddingBottom: `calc(${theme.spacing.lg} * 16)`,
+		// margin: 'auto',
 		zIndex: 1,
 		position: 'relative',
 		[theme.fn.smallerThan('sm')]: {
@@ -38,7 +39,6 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	},
 
 	title: {
-		// color: theme.white,
 		color: theme.colorScheme === 'dark' ? theme.white : theme.primaryColor,
 		fontSize: rem(60),
 		fontWeight: 900,
@@ -57,8 +57,7 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 
 	description: {
 		color: theme.white,
-		maxWidth: 600,
-
+		textAlign: 'center',
 		[theme.fn.smallerThan('sm')]: {
 			maxWidth: '100%',
 			fontSize: theme.fontSizes.sm,

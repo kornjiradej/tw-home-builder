@@ -10,8 +10,11 @@ import {
 	List,
 	ThemeIcon,
 	rem,
+	Center,
 } from '@mantine/core'
+import { Player } from '@lottiefiles/react-lottie-player'
 import { IconCheck } from '@tabler/icons-react'
+import { Link } from 'react-scroll'
 
 const useStyles = createStyles((theme) => ({
 	inner: {
@@ -49,6 +52,12 @@ const useStyles = createStyles((theme) => ({
 		},
 	},
 
+	button: {
+		[theme.fn.smallerThan('xs')]: {
+			width: '100%',
+		},
+	},
+
 	image: {
 		flex: 1,
 
@@ -70,23 +79,29 @@ const useStyles = createStyles((theme) => ({
 
 export const SectionOne = () => {
 	const { classes } = useStyles()
-	const image =
-		'https://raw.githubusercontent.com/mantinedev/ui.mantine.dev/master/components/HeroBullets/image.svg'
+	const options = {
+		src: 'https://assets10.lottiefiles.com/packages/lf20_o6hQ8m.json',
+		loop: true,
+		background: 'transparent',
+		speed: 1,
+		style: { width: 300, height: 300 },
+		controls: true,
+		autoplay: true,
+	}
+
 	return (
 		<section id='section-one'>
 			<Container>
 				<div className={classes.inner}>
 					<div className={classes.content}>
 						<Title className={classes.title}>
-							A <span className={classes.highlight}>modern</span> React <br />{' '}
-							components library
+							ให้เรื่อง<span className={classes.highlight}>บ้าน</span>
+							เป็นเรื่องง่าย
+							<br />{' '}
 						</Title>
 						<Text color='dimmed' mt='md'>
-							Build fully functional accessible web applications faster than
-							ever – Mantine includes more than 120 customizable components and
-							hooks to cover you in any situation
+							พร้อมงานบริการที่ครอบคลุมทั่วจังหวัดสกลนคร และจังหวัดใกล้เคียง
 						</Text>
-
 						<List
 							mt={30}
 							spacing='sm'
@@ -98,34 +113,49 @@ export const SectionOne = () => {
 							}
 						>
 							<List.Item>
-								<b>TypeScript based</b> – build type safe applications, all
-								components and hooks export types
+								<b>บริการออกแบบ</b> – ลงลึกทุกรายละเอียดตั้งแต่เริ่มออกแบบ
+								ให้ตำแนะนำโดยผู้เชี่ยวชาญ เน้นความสวยงามและฟังก์ชั่นที่ลงตัว
+								เพื่อการใช้พื้นที่อย่างคุ้มค่า อยู่ในงบที่ไม่บานปลาย
+								ตอบโจทย์กับความต้องการของแต่ละครอบครัว
+								รวมถึงการเลือกใช้วัสดุที่เหมาะสมกับการใช้งานในแต่ละพื้นที่
 							</List.Item>
 							<List.Item>
-								<b>Free and open source</b> – all packages have MIT license, you
-								can use Mantine in any project
+								<b>บริการรับเหมาก่อสร้าง</b> – บริการรับเหมาก่อสร้างบ้าน
+								และอาคารที่พักอาศัยตั้งแต่ขนาดเล็กจนถึงขนาดใหญ่โดยผู้เชี่ยวชาญ
+								มืออาชีพมากประสบการณ์ เริ่มตั้งแต่ขั้นตอนออกแบบ จนถึงงานก่อสร้าง
 							</List.Item>
 							<List.Item>
-								<b>No annoying focus ring</b> – focus ring will appear only when
-								user navigates with keyboard
+								<b>งานปรับปรุงและต่อเติม</b> – รับต่อเติมและปรับปรุงบ้าน
+								ดูแลบ้านตั้งแต่ขั้นตอนออกแบบจนถึงก่อสร้างอย่างมืออาชีพด้วยประสบการณ์มากกว่า
+								20 ปี ให้คุณได้บ้านอย่างที่คุณต้องการ
 							</List.Item>
 						</List>
-
 						<Group mt={30}>
-							<Button radius='xl' size='md' className={classes.control}>
-								Get started
-							</Button>
-							<Button
-								variant='default'
-								radius='xl'
-								size='md'
+							<Link
+								to={'footer'}
+								smooth
+								duration={500}
 								className={classes.control}
 							>
-								Source code
-							</Button>
+								<Button className={classes.button} radius='xl' size='md'>
+									ติดต่อเรา
+								</Button>
+							</Link>
+							<Link to={'/'} className={classes.control}>
+								<Button
+									className={classes.button}
+									variant='default'
+									radius='xl'
+									size='md'
+								>
+									รีวิว
+								</Button>
+							</Link>
 						</Group>
 					</div>
-					<Image src={image} className={classes.image} />
+					<Center className={classes.image}>
+						<Player {...options} />
+					</Center>
 				</div>
 			</Container>
 		</section>

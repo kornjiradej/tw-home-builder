@@ -1,4 +1,4 @@
-import { Link } from 'react-scroll'
+import { Link, animateScroll } from 'react-scroll'
 import {
 	createStyles,
 	Header,
@@ -14,6 +14,8 @@ import {
 	useMantineTheme,
 	Drawer,
 	Text,
+	Box,
+	ActionIcon,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown } from '@tabler/icons-react'
@@ -22,6 +24,24 @@ import { HeaderSearchProps } from '@/types'
 import { TWHomeBuilderBucketURL } from '@/config'
 
 const useStyles = createStyles((theme) => ({
+	header: {
+		position: 'sticky',
+		top: 0,
+		backgroundColor:
+			theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+		transition: 'box-shadow 150ms ease',
+		borderBottom: 0,
+		'&::after': {
+			content: '""',
+			position: 'absolute',
+			left: 0,
+			right: 0,
+			bottom: 0,
+			backgroundColor:
+				theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+		},
+	},
+
 	inner: {
 		height: rem(56),
 		display: 'flex',
@@ -131,37 +151,37 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		)
 	})
 
+	const switchTheme = (
+		<Switch
+			size='md'
+			color={colorScheme === 'dark' ? 'gray' : 'dark'}
+			onLabel={
+				<IconSun size='1rem' stroke={2.5} color={theme.colors.yellow[4]} />
+			}
+			offLabel={
+				<IconMoonStars size='1rem' stroke={2.5} color={theme.colors.blue[6]} />
+			}
+			onClick={() => toggleColorScheme()}
+			style={{
+				cursor: 'pointer',
+			}}
+		/>
+	)
+
 	return (
-		<Header height={56}>
+		<Header height={56} className={classes.header}>
 			<Container>
 				<div className={classes.inner}>
-					<Avatar
-						src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
-						size={28}
-						radius={2}
-					/>
+					<ActionIcon onClick={() => animateScroll.scrollToTop()}>
+						<Avatar
+							src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
+							size={28}
+							radius={2}
+						/>
+					</ActionIcon>
 					<Group spacing={5} className={classes.links}>
 						{items}
-						<Switch
-							size='md'
-							color={colorScheme === 'dark' ? 'gray' : 'dark'}
-							onLabel={
-								<IconSun
-									size='1rem'
-									stroke={2.5}
-									color={theme.colors.yellow[4]}
-								/>
-							}
-							offLabel={
-								<IconMoonStars
-									size='1rem'
-									stroke={2.5}
-									color={theme.colors.blue[6]}
-								/>
-							}
-							onClick={() => toggleColorScheme()}
-							styles={{ input: { cursor: 'pointer' } }}
-						/>
+						{switchTheme}
 					</Group>
 					<Burger
 						opened={opened}
@@ -177,6 +197,7 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 						position='right'
 					>
 						{items}
+						<Box m={'xs'}>{switchTheme}</Box>
 					</Drawer>
 				</div>
 			</Container>

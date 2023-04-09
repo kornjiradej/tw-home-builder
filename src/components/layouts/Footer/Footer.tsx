@@ -141,7 +141,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
 	})
 
 	return (
-		<footer className={classes.footer}>
+		<footer className={classes.footer}  id='footer'>
 			<Container className={classes.inner}>
 				<div className={classes.logo}>
 					<Avatar size={30} />
