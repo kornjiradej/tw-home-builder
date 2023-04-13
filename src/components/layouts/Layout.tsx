@@ -1,25 +1,23 @@
 import { FooterLinksProps, HeaderSearchProps, LayoutProps } from '@/types'
 import { HeaderMenu } from './Header'
 import { FooterLinks } from './Footer'
-import { CopyButton, Tooltip, ActionIcon } from '@mantine/core'
-import { IconCheck, IconCopy } from '@tabler/icons-react'
 
 const menusHeader: HeaderSearchProps = {
 	links: [
 		{
-			link: '/',
+			link: `${process.env.basePath}/`,
 			label: 'หน้าแรก',
 		},
 		{
-			link: '/about',
+			link: `${process.env.basePath}/about`,
 			label: 'เกี่ยวกับเรา',
 		},
 		{
-			link: '/portfolio',
+			link: `${process.env.basePath}/portfolio`,
 			label: 'ผลงานของเรา',
 		},
 		{
-			link: '/contact',
+			link: `${process.env.basePath}/contact`,
 			label: 'ติดต่อเรา',
 		},
 	],

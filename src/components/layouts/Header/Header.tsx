@@ -112,7 +112,7 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		if (pathname === '/') {
 			return animateScroll.scrollToTop()
 		}
-		return push('/')
+		return push(`/${process.env.basePath}`)
 	}
 
 	const items = links.map((link) => {
@@ -149,7 +149,6 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 				</Menu>
 			)
 		}
-
 		return (
 			<Text
 				component='a'

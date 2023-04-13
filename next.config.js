@@ -1,6 +1,25 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+
+module.exports = (phase, { defaultConfig }) => {
+	if (phase === PHASE_DEVELOPMENT_SERVER) {
+		return {
+			/* development only config options here */
+			...defaultConfig,
+			reactStrictMode: true,
+			env: {
+				basePath: '',
+			},
+		}
+	}
+
+	return {
+		/* config options for all phases except development here */
+		...defaultConfig,
+		reactStrictMode: true,
+		env: {
+			basePath: 'tw-home-builder',
+		},
+	}
+}
