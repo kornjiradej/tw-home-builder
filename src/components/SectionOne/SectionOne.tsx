@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import {
 	createStyles,
-	Image,
 	Container,
 	Title,
 	Button,
@@ -15,17 +14,28 @@ import {
 import { Player } from '@lottiefiles/react-lottie-player'
 import { IconCheck } from '@tabler/icons-react'
 import { Link } from 'react-scroll'
+import { useViewportSize } from '@mantine/hooks'
+import { useRouter } from 'next/router'
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	inner: {
 		display: 'flex',
 		justifyContent: 'space-between',
-		paddingTop: `calc(${theme.spacing.xl} * 4)`,
-		paddingBottom: `calc(${theme.spacing.xl} * 4)`,
+		paddingTop: `calc(${theme.spacing.xl})`,
+		paddingBottom: `calc(${theme.spacing.xl})`,
+		height: '100%',
+	},
+
+	container: {
+		[theme.fn.largerThan('md')]: {
+			height: rem(height - 300),
+		},
 	},
 
 	content: {
 		maxWidth: rem(480),
+		height: 450,
+		margin: 'auto',
 		marginRight: `calc(${theme.spacing.xl} * 3)`,
 
 		[theme.fn.smallerThan('md')]: {
@@ -36,7 +46,6 @@ const useStyles = createStyles((theme) => ({
 
 	title: {
 		color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 		fontSize: rem(44),
 		lineHeight: 1.2,
 		fontWeight: 900,
@@ -78,7 +87,9 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export const SectionOne = () => {
-	const { classes } = useStyles()
+	const { height } = useViewportSize()
+	const { classes } = useStyles({ height })
+	const { push } = useRouter()
 	const options = {
 		src: 'https://assets10.lottiefiles.com/packages/lf20_o6hQ8m.json',
 		loop: true,
@@ -91,7 +102,7 @@ export const SectionOne = () => {
 
 	return (
 		<section id='section-one'>
-			<Container>
+			<Container className={classes.container}>
 				<div className={classes.inner}>
 					<div className={classes.content}>
 						<Title className={classes.title}>
@@ -131,24 +142,27 @@ export const SectionOne = () => {
 							</List.Item>
 						</List>
 						<Group mt={30}>
+							<Button
+								className={classes.button}
+								radius='xl'
+								size='md'
+								onClick={() => push('contact')}
+							>
+								ติดต่อเรา
+							</Button>
 							<Link
-								to={'footer'}
+								to={'section-two'}
+								className={classes.control}
 								smooth
 								duration={500}
-								className={classes.control}
 							>
-								<Button className={classes.button} radius='xl' size='md'>
-									ติดต่อเรา
-								</Button>
-							</Link>
-							<Link to={'/'} className={classes.control}>
 								<Button
 									className={classes.button}
 									variant='default'
 									radius='xl'
 									size='md'
 								>
-									รีวิว
+									ผลงานของเรา
 								</Button>
 							</Link>
 						</Group>

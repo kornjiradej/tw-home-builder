@@ -1,28 +1,26 @@
 import { FooterLinksProps, HeaderSearchProps, LayoutProps } from '@/types'
 import { HeaderMenu } from './Header'
 import { FooterLinks } from './Footer'
+import { CopyButton, Tooltip, ActionIcon } from '@mantine/core'
+import { IconCheck, IconCopy } from '@tabler/icons-react'
 
 const menusHeader: HeaderSearchProps = {
 	links: [
 		{
-			link: 'section-one',
-			label: 'service',
+			link: '/',
+			label: 'หน้าแรก',
 		},
 		{
-			link: 'section-two',
-			label: 'reviews',
+			link: '/about',
+			label: 'เกี่ยวกับเรา',
 		},
 		{
-			link: 'section-three',
-			label: 'Information',
+			link: '/portfolio',
+			label: 'ผลงานของเรา',
 		},
 		{
-			link: 'section-four',
-			label: 'Cards',
-		},
-		{
-			link: 'section-five',
-			label: 'FAQS',
+			link: '/contact',
+			label: 'ติดต่อเรา',
 		},
 	],
 }
@@ -30,76 +28,50 @@ const menusHeader: HeaderSearchProps = {
 const menuFooter: FooterLinksProps = {
 	data: [
 		{
-			title: 'About',
+			title: 'ที่อยู่',
 			links: [
 				{
-					label: 'Features',
-					link: '#',
-				},
-				{
-					label: 'Pricing',
-					link: '#',
-				},
-				{
-					label: 'Support',
-					link: '#',
-				},
-				{
-					label: 'Forums',
-					link: '#',
+					label: '704/44 ถนนเลี่ยงเมือง ต.ธาตุเชิงชุม อ.เมืองสกลนคร จ.สกลนคร',
+					link: 'https://goo.gl/maps/JAvutFRp15gajdQt9',
 				},
 			],
 		},
 		{
-			title: 'Project',
+			title: 'ติดต่อเรา',
 			links: [
 				{
-					label: 'Contribute',
-					link: '#',
+					label: '080-154-9887',
+					link: '0801549887',
+					isClipboard: true,
 				},
 				{
-					label: 'Media assets',
-					link: '#',
-				},
-				{
-					label: 'Changelog',
-					link: '#',
-				},
-				{
-					label: 'Releases',
-					link: '#',
+					label: 'proteusraccon@gmail.com',
+					link: 'proteusraccon@gmail.com',
+					isClipboard: true,
 				},
 			],
 		},
 		{
-			title: 'Community',
+			title: 'ติดตามข่าวสาร',
 			links: [
 				{
-					label: 'Join Discord',
-					link: '#',
+					label: 'Facebook: Twhomebuilder',
+					link: 'https://www.facebook.com/Twhomebuilder',
 				},
 				{
-					label: 'Follow on Twitter',
-					link: '#',
-				},
-				{
-					label: 'Email newsletter',
-					link: '#',
-				},
-				{
-					label: 'GitHub discussions',
-					link: '#',
+					label: 'Line: gb_boat',
+					link: '#', // TODO: Ask to get the link
 				},
 			],
 		},
 	],
 }
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, footer }: LayoutProps) => {
 	return (
 		<>
 			<HeaderMenu links={menusHeader.links} />
 			<main>{children}</main>
-			<FooterLinks data={menuFooter.data} />
+			<FooterLinks data={menuFooter.data} {...footer} />
 		</>
 	)
 }

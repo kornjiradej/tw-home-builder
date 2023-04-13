@@ -29,7 +29,6 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		paddingBottom: `calc(${theme.spacing.lg} * 16)`,
-		// margin: 'auto',
 		zIndex: 1,
 		position: 'relative',
 		[theme.fn.smallerThan('sm')]: {
@@ -73,7 +72,7 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	},
 }))
 
-export const About = () => {
+export const Home = () => {
 	const { height } = useViewportSize()
 	const { classes } = useStyles({ height })
 

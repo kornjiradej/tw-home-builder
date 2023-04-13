@@ -1,4 +1,4 @@
-import { Link, animateScroll } from 'react-scroll'
+import { animateScroll } from 'react-scroll'
 import {
 	createStyles,
 	Header,
@@ -16,12 +16,14 @@ import {
 	Text,
 	Box,
 	ActionIcon,
+	Flex,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown } from '@tabler/icons-react'
 import { IconSun, IconMoonStars } from '@tabler/icons-react'
 import { HeaderSearchProps } from '@/types'
 import { TWHomeBuilderBucketURL } from '@/config'
+import { useRouter } from 'next/router'
 
 const useStyles = createStyles((theme) => ({
 	header: {
@@ -30,7 +32,9 @@ const useStyles = createStyles((theme) => ({
 		backgroundColor:
 			theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
 		transition: 'box-shadow 150ms ease',
-		borderBottom: 0,
+		zIndex: 10,
+		borderBottom: `${rem(1)} double ${theme.colors.red[3]}`,
+
 		'&::after': {
 			content: '""',
 			position: 'absolute',
@@ -39,6 +43,7 @@ const useStyles = createStyles((theme) => ({
 			bottom: 0,
 			backgroundColor:
 				theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+			borderBottom: 0,
 		},
 	},
 
@@ -79,7 +84,8 @@ const useStyles = createStyles((theme) => ({
 			backgroundColor:
 				theme.colorScheme === 'dark'
 					? theme.colors.dark[6]
-					: theme.colors.gray[0],
+					: theme.colors.red[6],
+			color: theme.white,
 		},
 	},
 
@@ -87,25 +93,32 @@ const useStyles = createStyles((theme) => ({
 		marginRight: rem(5),
 	},
 
-	menuLabel: {
-		'&:hover': {
-			color: theme.primaryColor,
-		},
+	logoTitle: {
+		color:
+			theme.colorScheme === 'dark'
+				? theme.colors.dark[0]
+				: theme.colors.gray[7],
 	},
 }))
 
 export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 	const theme = useMantineTheme()
+	const { pathname, push } = useRouter()
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 	const [opened, { toggle, close }] = useDisclosure(false)
 	const { classes } = useStyles()
 
+	const onClickLogo = () => {
+		if (pathname === '/') {
+			return animateScroll.scrollToTop()
+		}
+		return push('/')
+	}
+
 	const items = links.map((link) => {
 		const menuItems = link.links?.map((item) => (
-			<Menu.Item key={item.link}>
-				<Link to={item.link} smooth duration={500} onClick={close}>
-					{item.label}
-				</Link>
+			<Menu.Item key={item.link} onClick={close}>
+				{item.label}
 			</Menu.Item>
 		))
 
@@ -138,16 +151,14 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		}
 
 		return (
-			<Link
+			<Text
+				component='a'
+				href={link.link}
 				key={link.label}
-				to={link.link}
-				smooth
-				duration={500}
 				className={classes.link}
-				onClick={close}
 			>
-				<Text className={classes.menuLabel}>{link.label}</Text>
-			</Link>
+				{link.label}
+			</Text>
 		)
 	})
 
@@ -172,13 +183,16 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		<Header height={56} className={classes.header}>
 			<Container>
 				<div className={classes.inner}>
-					<ActionIcon onClick={() => animateScroll.scrollToTop()}>
-						<Avatar
-							src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
-							size={28}
-							radius={2}
-						/>
-					</ActionIcon>
+					<Flex>
+						<ActionIcon onClick={onClickLogo} mr={10}>
+							<Avatar
+								src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
+								size={28}
+								radius={2}
+							/>
+						</ActionIcon>
+						<Text className={classes.logoTitle}>TW Home Builder</Text>
+					</Flex>
 					<Group spacing={5} className={classes.links}>
 						{items}
 						{switchTheme}

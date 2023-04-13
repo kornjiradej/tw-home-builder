@@ -1,21 +1,21 @@
 import {
-	About,
+	Home,
 	SectionOne,
 	SectionTwo,
-	SectionThree,
-	SectionFour,
-	SectionFive,
+	// SectionThree,
+	// SectionFour,
+	// SectionFive,
 } from '@/components'
 
 const Content = () => {
 	return (
 		<>
-			<About />
+			<Home />
 			<SectionOne />
 			<SectionTwo />
-			<SectionThree />
-			<SectionFour />
-			<SectionFive />
+			{/* <SectionThree /> */}
+			{/* <SectionFour /> */}
+			{/* <SectionFive /> */}
 		</>
 	)
 }

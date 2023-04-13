@@ -1,136 +1,157 @@
-import { FooterLinksProps } from '@/types'
 import {
 	createStyles,
 	Text,
 	Container,
-	ActionIcon,
-	Group,
 	rem,
 	Avatar,
+	Stack,
+	Center,
+	ActionIcon,
+	CopyButton,
+	Flex,
 } from '@mantine/core'
-import {
-	IconBrandTwitter,
-	IconBrandYoutube,
-	IconBrandInstagram,
-} from '@tabler/icons-react'
+import dayjs from 'dayjs'
+import { IconCheck, IconCopy } from '@tabler/icons-react'
+import { FooterLinksProps } from '@/types'
+import { TWHomeBuilderBucketURL } from '@/config'
 
-const useStyles = createStyles((theme) => ({
-	footer: {
-		// marginTop: rem(120),
-		paddingTop: `calc(${theme.spacing.xl} * 2)`,
-		paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-		backgroundColor:
-			theme.colorScheme === 'dark'
-				? theme.colors.dark[6]
-				: theme.colors.gray[0],
-		borderTop: `${rem(1)} solid ${
-			theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-		}`,
-	},
+const useStyles = createStyles(
+	(theme, { showContact }: { showContact: boolean }) => ({
+		footer: {
+			paddingTop: showContact ? `calc(${theme.spacing.xl} * 2)` : 0,
+			paddingBottom: showContact ? `calc(${theme.spacing.xl} * 2)` : 0,
+			backgroundColor:
+				theme.colorScheme === 'dark'
+					? theme.colors.dark[6]
+					: theme.colors.red[0],
+			borderTop: `${rem(1)} solid ${
+				theme.colorScheme === 'dark'
+					? theme.colors.dark[5]
+					: theme.colors.gray[2]
+			}`,
+		},
 
-	logo: {
-		maxWidth: rem(200),
-
-		[theme.fn.smallerThan('sm')]: {
+		logo: {
+			maxWidth: rem(200),
+			[theme.fn.smallerThan('md')]: {
+				display: 'flex',
+				flexDirection: 'column',
+				marginBottom: rem(30),
+			},
+		},
+		inner: {
 			display: 'flex',
-			flexDirection: 'column',
+			justifyContent: 'space-between',
+			[theme.fn.smallerThan('md')]: {
+				flexDirection: 'column',
+				alignItems: 'center',
+			},
+		},
+
+		groups: {
+			display: 'flex',
+			flexWrap: 'wrap',
+
+			[theme.fn.smallerThan('sm')]: {
+				flexDirection: 'column',
+				alignItems: 'center',
+			},
+		},
+
+		wrapper: {
+			width: rem(200),
+			[theme.fn.smallerThan('md')]: {
+				width: rem(230),
+			},
+			[theme.fn.smallerThan('sm')]: {
+				width: '100%',
+				marginTop: rem(20),
+				marginBottom: rem(20),
+			},
+		},
+
+		link: {
+			display: 'flex',
 			alignItems: 'center',
+			color:
+				theme.colorScheme === 'dark'
+					? theme.colors.dark[1]
+					: theme.colors.gray[6],
+			fontSize: theme.fontSizes.sm,
+			paddingTop: rem(3),
+			paddingBottom: rem(3),
+
+			'&:hover': {
+				textDecoration: 'underline',
+			},
 		},
-	},
 
-	description: {
-		marginTop: rem(5),
-
-		[theme.fn.smallerThan('sm')]: {
-			marginTop: theme.spacing.xs,
-			textAlign: 'center',
+		title: {
+			fontSize: theme.fontSizes.lg,
+			fontWeight: 700,
+			fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+			marginBottom: `calc(${theme.spacing.xs} / 2)`,
+			color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 		},
-	},
 
-	inner: {
-		display: 'flex',
-		justifyContent: 'space-between',
-
-		[theme.fn.smallerThan('sm')]: {
-			flexDirection: 'column',
-			alignItems: 'center',
+		afterFooter: {
+			marginTop: showContact ? theme.spacing.xl : 0,
+			paddingTop: theme.spacing.xl,
+			paddingBottom: theme.spacing.xl,
+			borderTop: showContact
+				? `${rem(1)} solid ${
+						theme.colorScheme === 'dark'
+							? theme.colors.dark[4]
+							: theme.colors.gray[2]
+				  }`
+				: 0,
 		},
-	},
 
-	groups: {
-		display: 'flex',
-		flexWrap: 'wrap',
-
-		[theme.fn.smallerThan('sm')]: {
-			display: 'none',
+		social: {
+			[theme.fn.smallerThan('sm')]: {
+				marginTop: theme.spacing.xs,
+			},
 		},
-	},
+	})
+)
 
-	wrapper: {
-		width: rem(160),
-	},
-
-	link: {
-		display: 'block',
-		color:
-			theme.colorScheme === 'dark'
-				? theme.colors.dark[1]
-				: theme.colors.gray[6],
-		fontSize: theme.fontSizes.sm,
-		paddingTop: rem(3),
-		paddingBottom: rem(3),
-
-		'&:hover': {
-			textDecoration: 'underline',
-		},
-	},
-
-	title: {
-		fontSize: theme.fontSizes.lg,
-		fontWeight: 700,
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-		marginBottom: `calc(${theme.spacing.xs} / 2)`,
-		color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-	},
-
-	afterFooter: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		marginTop: theme.spacing.xl,
-		paddingTop: theme.spacing.xl,
-		paddingBottom: theme.spacing.xl,
-		borderTop: `${rem(1)} solid ${
-			theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-		}`,
-
-		[theme.fn.smallerThan('sm')]: {
-			flexDirection: 'column',
-		},
-	},
-
-	social: {
-		[theme.fn.smallerThan('sm')]: {
-			marginTop: theme.spacing.xs,
-		},
-	},
-}))
-
-export function FooterLinks({ data }: FooterLinksProps) {
-	const { classes } = useStyles()
+export function FooterLinks({ data, showContact = true }: FooterLinksProps) {
+	const { classes } = useStyles({ showContact })
 
 	const groups = data.map((group) => {
-		const links = group.links.map((link, index) => (
-			<Text<'a'>
-				key={index}
-				className={classes.link}
-				component='a'
-				href={link.link}
-				onClick={(event) => event.preventDefault()}
-			>
-				{link.label}
-			</Text>
-		))
+		const links = group.links.map((link, index) => {
+			if (link.isClipboard) {
+				return (
+					<CopyButton key={link.link} value={link.link} timeout={1000}>
+						{({ copied, copy }) => (
+							<Flex>
+								<Text className={classes.link} span onClick={copy}>
+									{link.label}
+								</Text>
+								<ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+									{copied ? (
+										<IconCheck size='1rem' />
+									) : (
+										<IconCopy size='1rem' />
+									)}
+								</ActionIcon>
+							</Flex>
+						)}
+					</CopyButton>
+				)
+			}
+			return (
+				<Text<'a'>
+					key={index}
+					className={classes.link}
+					component='a'
+					href={link.link}
+					target='_blank'
+				>
+					{link.label}{' '}
+				</Text>
+			)
+		})
 
 		return (
 			<div className={classes.wrapper} key={group.title}>
@@ -141,32 +162,36 @@ export function FooterLinks({ data }: FooterLinksProps) {
 	})
 
 	return (
-		<footer className={classes.footer}  id='footer'>
-			<Container className={classes.inner}>
-				<div className={classes.logo}>
-					<Avatar size={30} />
-					<Text size='xs' color='dimmed' className={classes.description}>
-						Build fully functional accessible web applications faster than ever
-					</Text>
-				</div>
-				<div className={classes.groups}>{groups}</div>
-			</Container>
+		<footer className={classes.footer} id='footer'>
+			{showContact && (
+				<Container className={classes.inner}>
+					<div className={classes.logo}>
+						<Flex justify={'center'} align={'center'}>
+							<Avatar
+								src={`${TWHomeBuilderBucketURL}/TW-Home-Builder-Logo.webp`}
+								size={45}
+								radius={2}
+								mr={10}
+							/>
+							<Stack spacing={0}>
+								<Text size='md'>TW Home Builder</Text>
+								<Text size='xs' color='dimmed'>
+									เรื่องบ้านให้เราดูแล
+								</Text>
+							</Stack>
+						</Flex>
+					</div>
+					<div className={classes.groups}>{groups}</div>
+				</Container>
+			)}
 			<Container className={classes.afterFooter}>
-				<Text color='dimmed' size='sm'>
-					© 2020 mantine.dev. All rights reserved.
-				</Text>
-
-				<Group spacing={0} className={classes.social} position='right' noWrap>
-					<ActionIcon size='lg'>
-						<IconBrandTwitter size='1.05rem' stroke={1.5} />
-					</ActionIcon>
-					<ActionIcon size='lg'>
-						<IconBrandYoutube size='1.05rem' stroke={1.5} />
-					</ActionIcon>
-					<ActionIcon size='lg'>
-						<IconBrandInstagram size='1.05rem' stroke={1.5} />
-					</ActionIcon>
-				</Group>
+				<Center>
+					<Text color='dimmed' size='sm'>
+						{`Copyright © ${dayjs().format(
+							'YYYY'
+						)} ห้างหุ้นส่วนจำกัด ทีดับบลิว โฮมบิ้วเดอร์`}
+					</Text>
+				</Center>
 			</Container>
 		</footer>
 	)

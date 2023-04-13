@@ -3,3 +3,5 @@ export const TemplateBucketURL =
 
 export const TWHomeBuilderBucketURL =
 	'https://pub-e116ff4080f64c32b2e14caeda26c071.r2.dev'
+
+export const TRANSITION_DURATION = 200
