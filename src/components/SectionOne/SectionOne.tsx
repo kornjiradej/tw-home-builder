@@ -150,7 +150,7 @@ export const SectionOne = () => {
 									className={classes.button}
 									radius='xl'
 									size='md'
-									onClick={() => push(`${process.env.basePath}/contact`)}
+									onClick={() => push('/contact')}
 								>
 									ติดต่อเรา
 								</Button>

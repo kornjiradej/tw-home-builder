@@ -112,7 +112,7 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		if (pathname === '/') {
 			return animateScroll.scrollToTop()
 		}
-		return push(`/${process.env.basePath}`)
+		return push(`/`)
 	}
 
 	const items = links.map((link) => {

@@ -5,19 +5,19 @@ import { FooterLinks } from './Footer'
 const menusHeader: HeaderSearchProps = {
 	links: [
 		{
-			link: `${process.env.basePath}/`,
+			link: `/`,
 			label: 'หน้าแรก',
 		},
 		{
-			link: `${process.env.basePath}/about`,
+			link: `/about`,
 			label: 'เกี่ยวกับเรา',
 		},
 		{
-			link: `${process.env.basePath}/portfolio`,
+			link: `/portfolio`,
 			label: 'ผลงานของเรา',
 		},
 		{
-			link: `${process.env.basePath}/contact`,
+			link: `/contact`,
 			label: 'ติดต่อเรา',
 		},
 	],
