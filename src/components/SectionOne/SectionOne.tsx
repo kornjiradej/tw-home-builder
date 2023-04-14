@@ -18,6 +18,7 @@ import { Link } from 'react-scroll'
 import { useViewportSize } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 import { Suspense } from 'react'
+import { PATH } from '@/config'
 
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	inner: {
@@ -31,6 +32,10 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	container: {
 		[theme.fn.largerThan('md')]: {
 			height: rem(height - 300),
+		},
+		[theme.fn.smallerThan('md')]: {
+			marginTop: `calc(${theme.spacing.xl})`,
+			marginBottom: `calc(${theme.spacing.xl} * 3)`,
 		},
 	},
 
@@ -59,7 +64,8 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 
 	control: {
 		[theme.fn.smallerThan('xs')]: {
-			flex: 1,
+			width: '100%',
+			display: 'block',
 		},
 	},
 
@@ -150,7 +156,7 @@ export const SectionOne = () => {
 									className={classes.button}
 									radius='xl'
 									size='md'
-									onClick={() => push('/contact')}
+									onClick={() => push(PATH.contact)}
 								>
 									ติดต่อเรา
 								</Button>

@@ -1,23 +1,24 @@
 import { FooterLinksProps, HeaderSearchProps, LayoutProps } from '@/types'
 import { HeaderMenu } from './Header'
 import { FooterLinks } from './Footer'
+import { PATH } from '@/config'
 
 const menusHeader: HeaderSearchProps = {
 	links: [
 		{
-			link: `/`,
+			link: PATH.home,
 			label: 'หน้าแรก',
 		},
 		{
-			link: `/about`,
+			link: PATH.about,
 			label: 'เกี่ยวกับเรา',
 		},
 		{
-			link: `/portfolio`,
+			link: PATH.portfolio,
 			label: 'ผลงานของเรา',
 		},
 		{
-			link: `/contact`,
+			link: PATH.contact,
 			label: 'ติดต่อเรา',
 		},
 	],

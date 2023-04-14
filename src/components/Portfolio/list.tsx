@@ -23,6 +23,10 @@ const useStyles = createStyles((theme) => ({
 		margin: 'auto',
 		paddingTop: `calc(${theme.spacing.xl} * 2)`,
 		paddingBottom: `calc(${theme.spacing.xl} * 2)`,
+
+		[theme.fn.smallerThan('md')]: {
+			paddingTop: `calc(${theme.spacing.xl} * 3)`,
+		},
 	},
 	carousel: {
 		root: {
