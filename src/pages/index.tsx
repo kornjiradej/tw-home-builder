@@ -7,8 +7,8 @@ import dynamic from 'next/dynamic'
 
 const Content = dynamic(() => import('@/views/Content'), {
 	suspense: true,
-	ssr: false,
-	// loading: () => <LoadingOverlay visible />,
+	// ssr: false,
+	loading: () => <LoadingOverlay visible />,
 })
 
 const Page: NextPageWithLayout = () => <Content />
