@@ -2,14 +2,21 @@
  * @type {import('next').NextConfig}
  */
 
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+const { PHASE_PRODUCTION_SERVER } = require('next/constants')
 
 let nextConfig = {
 	/* config options here */
 	reactStrictMode: true,
 	env: {
-		basePath: PHASE_DEVELOPMENT_SERVER ? '' : 'tw-home-builder',
+		basePath: '',
 	},
 }
 
-module.exports = nextConfig
+module.exports = (phase) => {
+	if (phase === PHASE_PRODUCTION_SERVER) {
+		nextConfig.env.basePath = 'tw-home-builder'
+	}
+	return {
+		nextConfig,
+	}
+}
