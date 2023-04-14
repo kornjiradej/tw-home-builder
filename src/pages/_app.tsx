@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
 	return (
-		<>
+		<Suspense fallback={<LoadingOverlay visible={true} />}>
 			<Head>
 				<title>TW Home Builder</title>
 				<meta
@@ -49,6 +49,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 					{getLayout(<Component {...pageProps} />)}
 				</MantineProvider>
 			</ColorSchemeProvider>
-		</>
+		</Suspense>
 	)
 }

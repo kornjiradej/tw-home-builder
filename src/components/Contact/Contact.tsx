@@ -18,7 +18,6 @@ import {
 	IconCheck,
 	IconMail,
 	IconPhoneCall,
-	IconRecordMail,
 } from '@tabler/icons-react'
 import { Player } from '@lottiefiles/react-lottie-player'
 
