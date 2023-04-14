@@ -1,22 +1,33 @@
-/**
- * @type {import('next').NextConfig}
- */
+const {
+	PHASE_DEVELOPMENT_SERVER,
+	PHASE_PRODUCTION_BUILD,
+} = require('next/constants')
 
-const { PHASE_PRODUCTION_SERVER } = require('next/constants')
-
-let nextConfig = {
-	/* config options here */
-	reactStrictMode: true,
-	env: {
-		basePath: '',
-	},
-}
-
+// This uses phases as outlined here: https://nextjs.org/docs/#custom-configuration
 module.exports = (phase) => {
-	if (phase === PHASE_PRODUCTION_SERVER) {
-		nextConfig.env.basePath = 'tw-home-builder'
+	// when started in development mode `next dev` or `npm run dev` regardless of the value of STAGING environment variable
+	const isDev = phase === PHASE_DEVELOPMENT_SERVER
+	// when `next build` or `npm run build` is used
+	const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1'
+	// when `next build` or `npm run build` is used
+	const isStaging =
+		phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1'
+
+	console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`)
+
+	const env = {
+		BASE_PATH: (() => {
+			if (isDev) return ''
+			if (isStaging) return 'tw-home-builder'
+			if (isProd) {
+				return 'tw-home-builder'
+			}
+			return 'tw-home-builder'
+		})(),
 	}
+
+	// next.config.js object
 	return {
-		nextConfig,
+		env,
 	}
 }
