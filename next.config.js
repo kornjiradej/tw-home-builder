@@ -19,7 +19,8 @@ module.exports = (phase, { defaultConfig }) => {
 		...defaultConfig,
 		reactStrictMode: true,
 		env: {
-			basePath: 'tw-home-builder',
+			// basePath: 'tw-home-builder',
+			basePath: '',
 		},
 	}
 }
