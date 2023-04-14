@@ -7,8 +7,8 @@ export const TWHomeBuilderBucketURL =
 export const TRANSITION_DURATION = 200
 
 export const PATH = {
-	home: '/',
-	about: '/about',
-	portfolio: '/portfolio',
-	contact: '/contact',
+	home: process.env.basePath + '/',
+	about: process.env.basePath + '/about',
+	portfolio: process.env.basePath + '/portfolio',
+	contact: process.env.basePath + '/contact',
 }
