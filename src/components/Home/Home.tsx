@@ -6,10 +6,12 @@ import {
 	Button,
 	Text,
 	rem,
+	LoadingOverlay,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 import { TWHomeBuilderBucketURL } from '@/config'
 import { Link } from 'react-scroll'
+import { Suspense } from 'react'
 
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	hero: {
@@ -77,29 +79,31 @@ export const Home = () => {
 	const { classes } = useStyles({ height })
 
 	return (
-		<section id='about' className={classes.hero}>
-			<Overlay
-				gradient='linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)'
-				opacity={1}
-				zIndex={0}
-			/>
-			<Container className={classes.container}>
-				<Title className={classes.title}>TW Home Builder</Title>
-				<Text className={classes.description} size='xl' mt='xl'>
-					สร้างบ้าน ออกแบบ เขียนแบบ รีโนเวทบ้าน Interior Designer
-					สร้างบ้านสวยตามใจคุณ
-				</Text>
-				<Link to='section-one' smooth duration={500}>
-					<Button
-						variant='gradient'
-						size='xl'
-						radius='xl'
-						className={classes.control}
-					>
-						บริการของเรา
-					</Button>
-				</Link>
-			</Container>
-		</section>
+		<Suspense fallback={<LoadingOverlay visible />}>
+			<section id='about' className={classes.hero}>
+				<Overlay
+					gradient='linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)'
+					opacity={1}
+					zIndex={0}
+				/>
+				<Container className={classes.container}>
+					<Title className={classes.title}>TW Home Builder</Title>
+					<Text className={classes.description} size='xl' mt='xl'>
+						สร้างบ้าน ออกแบบ เขียนแบบ รีโนเวทบ้าน Interior Designer
+						สร้างบ้านสวยตามใจคุณ
+					</Text>
+					<Link to='section-one' smooth duration={500}>
+						<Button
+							variant='gradient'
+							size='xl'
+							radius='xl'
+							className={classes.control}
+						>
+							บริการของเรา
+						</Button>
+					</Link>
+				</Container>
+			</section>
+		</Suspense>
 	)
 }

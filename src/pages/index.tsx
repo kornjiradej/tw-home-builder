@@ -1,7 +1,15 @@
-import type { ReactElement } from 'react'
+import { ReactElement } from 'react'
+import { LoadingOverlay } from '@mantine/core'
 import type { NextPageWithLayout } from './_app'
 import { Layout } from '@/components/layouts'
-import Content from '@/views/Content'
+
+import dynamic from 'next/dynamic'
+
+const Content = dynamic(() => import('@/views/Content'), {
+	suspense: true,
+	ssr: false,
+	loading: () => <LoadingOverlay visible />,
+})
 
 const Page: NextPageWithLayout = () => <Content />
 

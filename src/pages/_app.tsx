@@ -1,10 +1,11 @@
-import { ReactElement, ReactNode, useState } from 'react'
+import { ReactElement, ReactNode, useState, Suspense } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
 import {
 	MantineProvider,
 	ColorSchemeProvider,
 	ColorScheme,
+	LoadingOverlay,
 } from '@mantine/core'
 import Head from 'next/head'
 
@@ -24,7 +25,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
 	return (
-		<>
+		<Suspense fallback={<LoadingOverlay visible={true} />}>
 			<Head>
 				<title>TW Home Builder</title>
 				<meta
@@ -48,6 +49,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 					{getLayout(<Component {...pageProps} />)}
 				</MantineProvider>
 			</ColorSchemeProvider>
-		</>
+		</Suspense>
 	)
 }

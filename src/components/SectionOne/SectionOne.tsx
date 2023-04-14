@@ -10,12 +10,14 @@ import {
 	ThemeIcon,
 	rem,
 	Center,
+	LoadingOverlay,
 } from '@mantine/core'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { IconCheck } from '@tabler/icons-react'
 import { Link } from 'react-scroll'
 import { useViewportSize } from '@mantine/hooks'
 import { useRouter } from 'next/router'
+import { Suspense } from 'react'
 
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	inner: {
@@ -101,77 +103,80 @@ export const SectionOne = () => {
 	}
 
 	return (
-		<section id='section-one'>
-			<Container className={classes.container}>
-				<div className={classes.inner}>
-					<div className={classes.content}>
-						<Title className={classes.title}>
-							ให้เรื่อง<span className={classes.highlight}>บ้าน</span>
-							เป็นเรื่องง่าย
-							<br />{' '}
-						</Title>
-						<Text color='dimmed' mt='md'>
-							พร้อมงานบริการที่ครอบคลุมทั่วจังหวัดสกลนคร และจังหวัดใกล้เคียง
-						</Text>
-						<List
-							mt={30}
-							spacing='sm'
-							size='sm'
-							icon={
-								<ThemeIcon size={20} radius='xl'>
-									<IconCheck size={rem(12)} stroke={1.5} />
-								</ThemeIcon>
-							}
-						>
-							<List.Item>
-								<b>บริการออกแบบ</b> – ลงลึกทุกรายละเอียดตั้งแต่เริ่มออกแบบ
-								ให้ตำแนะนำโดยผู้เชี่ยวชาญ เน้นความสวยงามและฟังก์ชั่นที่ลงตัว
-								เพื่อการใช้พื้นที่อย่างคุ้มค่า อยู่ในงบที่ไม่บานปลาย
-								ตอบโจทย์กับความต้องการของแต่ละครอบครัว
-								รวมถึงการเลือกใช้วัสดุที่เหมาะสมกับการใช้งานในแต่ละพื้นที่
-							</List.Item>
-							<List.Item>
-								<b>บริการรับเหมาก่อสร้าง</b> – บริการรับเหมาก่อสร้างบ้าน
-								และอาคารที่พักอาศัยตั้งแต่ขนาดเล็กจนถึงขนาดใหญ่โดยผู้เชี่ยวชาญ
-								มืออาชีพมากประสบการณ์ เริ่มตั้งแต่ขั้นตอนออกแบบ จนถึงงานก่อสร้าง
-							</List.Item>
-							<List.Item>
-								<b>งานปรับปรุงและต่อเติม</b> – รับต่อเติมและปรับปรุงบ้าน
-								ดูแลบ้านตั้งแต่ขั้นตอนออกแบบจนถึงก่อสร้างอย่างมืออาชีพด้วยประสบการณ์มากกว่า
-								20 ปี ให้คุณได้บ้านอย่างที่คุณต้องการ
-							</List.Item>
-						</List>
-						<Group mt={30}>
-							<Button
-								className={classes.button}
-								radius='xl'
-								size='md'
-								onClick={() => push(`${process.env.basePath}/contact`)}
+		<Suspense fallback={<LoadingOverlay visible />}>
+			<section id='section-one'>
+				<Container className={classes.container}>
+					<div className={classes.inner}>
+						<div className={classes.content}>
+							<Title className={classes.title}>
+								ให้เรื่อง<span className={classes.highlight}>บ้าน</span>
+								เป็นเรื่องง่าย
+								<br />{' '}
+							</Title>
+							<Text color='dimmed' mt='md'>
+								พร้อมงานบริการที่ครอบคลุมทั่วจังหวัดสกลนคร และจังหวัดใกล้เคียง
+							</Text>
+							<List
+								mt={30}
+								spacing='sm'
+								size='sm'
+								icon={
+									<ThemeIcon size={20} radius='xl'>
+										<IconCheck size={rem(12)} stroke={1.5} />
+									</ThemeIcon>
+								}
 							>
-								ติดต่อเรา
-							</Button>
-							<Link
-								to={'section-two'}
-								className={classes.control}
-								smooth
-								duration={500}
-							>
+								<List.Item>
+									<b>บริการออกแบบ</b> – ลงลึกทุกรายละเอียดตั้งแต่เริ่มออกแบบ
+									ให้ตำแนะนำโดยผู้เชี่ยวชาญ เน้นความสวยงามและฟังก์ชั่นที่ลงตัว
+									เพื่อการใช้พื้นที่อย่างคุ้มค่า อยู่ในงบที่ไม่บานปลาย
+									ตอบโจทย์กับความต้องการของแต่ละครอบครัว
+									รวมถึงการเลือกใช้วัสดุที่เหมาะสมกับการใช้งานในแต่ละพื้นที่
+								</List.Item>
+								<List.Item>
+									<b>บริการรับเหมาก่อสร้าง</b> – บริการรับเหมาก่อสร้างบ้าน
+									และอาคารที่พักอาศัยตั้งแต่ขนาดเล็กจนถึงขนาดใหญ่โดยผู้เชี่ยวชาญ
+									มืออาชีพมากประสบการณ์ เริ่มตั้งแต่ขั้นตอนออกแบบ
+									จนถึงงานก่อสร้าง
+								</List.Item>
+								<List.Item>
+									<b>งานปรับปรุงและต่อเติม</b> – รับต่อเติมและปรับปรุงบ้าน
+									ดูแลบ้านตั้งแต่ขั้นตอนออกแบบจนถึงก่อสร้างอย่างมืออาชีพด้วยประสบการณ์มากกว่า
+									20 ปี ให้คุณได้บ้านอย่างที่คุณต้องการ
+								</List.Item>
+							</List>
+							<Group mt={30}>
 								<Button
 									className={classes.button}
-									variant='default'
 									radius='xl'
 									size='md'
+									onClick={() => push(`${process.env.basePath}/contact`)}
 								>
-									ผลงานของเรา
+									ติดต่อเรา
 								</Button>
-							</Link>
-						</Group>
+								<Link
+									to={'section-two'}
+									className={classes.control}
+									smooth
+									duration={500}
+								>
+									<Button
+										className={classes.button}
+										variant='default'
+										radius='xl'
+										size='md'
+									>
+										ผลงานของเรา
+									</Button>
+								</Link>
+							</Group>
+						</div>
+						<Center className={classes.image}>
+							<Player {...options} />
+						</Center>
 					</div>
-					<Center className={classes.image}>
-						<Player {...options} />
-					</Center>
-				</div>
-			</Container>
-		</section>
+				</Container>
+			</section>
+		</Suspense>
 	)
 }
