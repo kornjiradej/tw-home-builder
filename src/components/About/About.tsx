@@ -16,6 +16,7 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingTop: `calc(${theme.spacing.xl} * 3)`,
 		[theme.fn.smallerThan('sm')]: {
 			paddingBottom: `calc(${theme.spacing.xl} * 3)`,
 		},
@@ -52,7 +53,7 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 		[theme.fn.smallerThan('sm')]: {
 			display: 'none',
 		},
-	}
+	},
 }))
 
 export const AboutContent = () => {

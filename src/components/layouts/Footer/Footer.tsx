@@ -23,7 +23,7 @@ const useStyles = createStyles(
 			backgroundColor:
 				theme.colorScheme === 'dark'
 					? theme.colors.dark[6]
-					: theme.colors.red[0],
+					: theme.colors.red[5],
 			borderTop: `${rem(1)} solid ${
 				theme.colorScheme === 'dark'
 					? theme.colors.dark[5]
@@ -32,7 +32,7 @@ const useStyles = createStyles(
 		},
 
 		logo: {
-			maxWidth: rem(200),
+			maxWidth: rem(220),
 			[theme.fn.smallerThan('md')]: {
 				display: 'flex',
 				flexDirection: 'column',
@@ -76,7 +76,7 @@ const useStyles = createStyles(
 			color:
 				theme.colorScheme === 'dark'
 					? theme.colors.dark[1]
-					: theme.colors.gray[6],
+					: theme.colors.gray[1],
 			fontSize: theme.fontSizes.sm,
 			paddingTop: rem(3),
 			paddingBottom: rem(3),
@@ -90,8 +90,7 @@ const useStyles = createStyles(
 			fontSize: theme.fontSizes.lg,
 			fontWeight: 700,
 			fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-			marginBottom: `calc(${theme.spacing.xs} / 2)`,
-			color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+			color: theme.white,
 		},
 
 		afterFooter: {
@@ -128,11 +127,15 @@ export function FooterLinks({ data, showContact = true }: FooterLinksProps) {
 								<Text className={classes.link} span onClick={copy}>
 									{link.label}
 								</Text>
-								<ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+								<ActionIcon
+									variant='transparent'
+									color={copied ? 'teal' : 'write'}
+									onClick={copy}
+								>
 									{copied ? (
 										<IconCheck size='1rem' />
 									) : (
-										<IconCopy size='1rem' />
+										<IconCopy size='1rem' color={'white'} />
 									)}
 								</ActionIcon>
 							</Flex>
@@ -174,8 +177,10 @@ export function FooterLinks({ data, showContact = true }: FooterLinksProps) {
 								mr={10}
 							/>
 							<Stack spacing={0}>
-								<Text size='md'>TW Home Builder</Text>
-								<Text size='xs' color='dimmed'>
+								<Text className={classes.title} size='md'>
+									TW Home Builder
+								</Text>
+								<Text size='xs' className={classes.link}>
 									เรื่องบ้านให้เราดูแล
 								</Text>
 							</Stack>
@@ -186,7 +191,7 @@ export function FooterLinks({ data, showContact = true }: FooterLinksProps) {
 			)}
 			<Container className={classes.afterFooter}>
 				<Center>
-					<Text color='dimmed' size='sm'>
+					<Text className={classes.link} size='sm'>
 						{`Copyright © ${dayjs().format(
 							'YYYY'
 						)} ห้างหุ้นส่วนจำกัด ทีดับบลิว โฮมบิ้วเดอร์`}

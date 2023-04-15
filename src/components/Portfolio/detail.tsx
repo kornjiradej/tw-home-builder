@@ -10,14 +10,19 @@ import {
 	Modal,
 	useMantineTheme,
 } from '@mantine/core'
-import { useViewportSize } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 import reviews from '../../data/reviews.json'
 import { TRANSITION_DURATION, TWHomeBuilderBucketURL } from '@/config'
 import { useState } from 'react'
 import { TitleContent } from '../TitleContent'
+import { Layout } from '@/components/layouts'
 
 const useStyles = createStyles((theme) => ({
+	container: {
+		margin: 'auto',
+		paddingTop: `calc(${theme.spacing.xl} * 3)`,
+		paddingBottom: `calc(${theme.spacing.xl} * 3)`,
+	},
 	card: {
 		boxShadow: theme.shadows.md,
 		transition: 'transform 150ms ease, box-shadow 150ms ease',
@@ -33,11 +38,10 @@ const useStyles = createStyles((theme) => ({
 	},
 }))
 
-export const PortfolioDetail = () => {
+const Detail = () => {
 	const {
 		query: { id },
 	} = useRouter()
-	const { height } = useViewportSize()
 	const { classes } = useStyles()
 	const theme = useMantineTheme()
 	const data = reviews.find((r) => r.id === id)
@@ -61,56 +65,60 @@ export const PortfolioDetail = () => {
 	))
 
 	return (
-		<Container>
-			<Box mt={20}>
-				<TitleContent title={`${data?.owner}`} />
-				<Text size={18} fw={500} mt={'md'}>
-					{data?.title}
-				</Text>
-				<Text className={classes.description} size={14} mt={'md'}>
-					{data?.description}
-				</Text>
-			</Box>
-			<SimpleGrid
-				mt={30}
-				mb={60}
-				cols={3}
-				breakpoints={[
-					{ maxWidth: 'sm', cols: 1 },
-					{ maxWidth: 'md', cols: 2 },
-				]}
-			>
-				{cards}
-			</SimpleGrid>
-			<Modal
-				opened={imageId ? true : false}
-				onClose={() => setImageId(null)}
-				title={''}
-				centered
-				withCloseButton={false}
-				transitionProps={{
-					transition: 'fade',
-					duration: TRANSITION_DURATION,
-				}}
-				radius='md'
-				size='100%'
-				overlayProps={{
-					color:
-						theme.colorScheme === 'dark'
-							? theme.colors.dark[9]
-							: theme.colors.gray[2],
-					opacity: 0.55,
-					blur: 3,
-				}}
-			>
-				<AspectRatio ratio={720 / 1080} mah={'70rem'} maw={720} mx='auto'>
-					<Image
-						radius='xs'
-						src={`${TWHomeBuilderBucketURL}/${data?.id}/${imageId}.webp`}
-						alt='image'
-					/>
-				</AspectRatio>
-			</Modal>
-		</Container>
+		<Layout>
+			<Container className={classes.container}>
+				<Box mt={20}>
+					<TitleContent title={`${data?.owner}`} />
+					<Text size={18} fw={500} mt={'md'}>
+						{data?.title}
+					</Text>
+					<Text className={classes.description} size={14} mt={'md'}>
+						{data?.description}
+					</Text>
+				</Box>
+				<SimpleGrid
+					mt={30}
+					mb={60}
+					cols={3}
+					breakpoints={[
+						{ maxWidth: 'sm', cols: 1 },
+						{ maxWidth: 'md', cols: 2 },
+					]}
+				>
+					{cards}
+				</SimpleGrid>
+				<Modal
+					opened={imageId ? true : false}
+					onClose={() => setImageId(null)}
+					title={''}
+					centered
+					withCloseButton={false}
+					transitionProps={{
+						transition: 'fade',
+						duration: TRANSITION_DURATION,
+					}}
+					radius='md'
+					size='100%'
+					overlayProps={{
+						color:
+							theme.colorScheme === 'dark'
+								? theme.colors.dark[9]
+								: theme.colors.gray[2],
+						opacity: 0.55,
+						blur: 3,
+					}}
+				>
+					<AspectRatio ratio={1080 / 720} mx='auto'>
+						<Image
+							radius='xs'
+							src={`${TWHomeBuilderBucketURL}/${data?.id}/${imageId}.webp`}
+							alt='image'
+						/>
+					</AspectRatio>
+				</Modal>
+			</Container>
+		</Layout>
 	)
 }
+
+export default Detail
