@@ -4,9 +4,7 @@
 
 const nextConfig = {
 	/* config options here */
-	env: {
-		BASE_PATH: '',
-	},
+	reactStrictMode: true,
 }
 
 module.exports = nextConfig
