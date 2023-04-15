@@ -131,19 +131,17 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 					withinPortal
 				>
 					<Menu.Target>
-						<a
-							href={link.link}
+						<Center
 							className={classes.link}
 							onClick={(event) => {
 								event.preventDefault()
 								close()
+								push(link.link)
 							}}
 						>
-							<Center>
-								<span className={classes.linkLabel}>{link.label}</span>
-								<IconChevronDown size='0.9rem' stroke={1.5} />
-							</Center>
-						</a>
+							<span className={classes.linkLabel}>{link.label}</span>
+							<IconChevronDown size='0.9rem' stroke={1.5} />
+						</Center>
 					</Menu.Target>
 					<Menu.Dropdown>{menuItems}</Menu.Dropdown>
 				</Menu>
@@ -151,10 +149,9 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 		}
 		return (
 			<Text
-				component='a'
-				href={link.link}
 				key={link.label}
 				className={classes.link}
+				onClick={() => push(link.link)}
 			>
 				{link.label}
 			</Text>
