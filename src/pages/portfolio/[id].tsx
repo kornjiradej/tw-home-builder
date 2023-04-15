@@ -1,12 +1,19 @@
 import { NextPage } from 'next'
-import { Layout } from '@/components/layouts'
-import { PortfolioDetail } from '@/components'
+import { Suspense } from 'react'
+import { LoadingOverlay } from '@mantine/core'
+import dynamic from 'next/dynamic'
+
+const Detail = dynamic(() => import('@/components/Portfolio/detail'), {
+	suspense: true,
+	ssr: false,
+	loading: () => <LoadingOverlay visible />,
+})
 
 const PortfolioIDPage: NextPage = () => {
 	return (
-		<Layout>
-			<PortfolioDetail />
-		</Layout>
+		<Suspense fallback={<LoadingOverlay visible={true} />}>
+			<Detail />
+		</Suspense>
 	)
 }
 

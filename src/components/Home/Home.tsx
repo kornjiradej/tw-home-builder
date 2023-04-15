@@ -9,7 +9,7 @@ import {
 	LoadingOverlay,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
-import { TWHomeBuilderBucketURL } from '@/config'
+// import { TWHomeBuilderBucketURL } from '@/config'
 import { Link } from 'react-scroll'
 import { Suspense } from 'react'
 
@@ -17,15 +17,15 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	hero: {
 		position: 'relative',
 		// Default Cover Image
-		// backgroundImage:
-		// 	'url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)',
-		backgroundImage: `url(${TWHomeBuilderBucketURL}/About-Landscape.webp)`,
+		backgroundImage:
+			'url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)',
+		// backgroundImage: `url(${TWHomeBuilderBucketURL}/About-Landscape.webp)`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 	},
 
 	container: {
-		height: rem(height - 56), // 56 is the height of the navigation bar
+		height: rem(height), // 56 is the height of the navigation bar
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'flex-end',

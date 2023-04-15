@@ -1,23 +1,16 @@
-import {
-	Home,
-	SectionOne,
-	SectionTwo,
-	// SectionThree,
-	// SectionFour,
-	// SectionFive,
-} from '@/components'
+import { Home, SectionOne, SectionTwo } from '@/components'
 import { LoadingOverlay } from '@mantine/core'
 import { Suspense } from 'react'
+import { Layout } from '@/components/layouts'
 
 const Content = () => {
 	return (
 		<Suspense fallback={<LoadingOverlay visible />}>
-			<Home />
-			<SectionOne />
-			<SectionTwo />
-			{/* <SectionThree /> */}
-			{/* <SectionFour /> */}
-			{/* <SectionFive /> */}
+			<Layout>
+				<Home />
+				<SectionOne />
+				<SectionTwo />
+			</Layout>
 		</Suspense>
 	)
 }

@@ -1,4 +1,5 @@
 // @index('./*/index.{ts,tsx}', f => `export * from '${f.path.replace(/\/index$/, '')}';`)
+export * from './About';
 export * from './Contact';
 export * from './Home';
 export * from './layouts';

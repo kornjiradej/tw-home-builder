@@ -18,95 +18,114 @@ import {
 	ActionIcon,
 	Flex,
 } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import { useDisclosure, useWindowScroll } from '@mantine/hooks'
 import { IconChevronDown } from '@tabler/icons-react'
 import { IconSun, IconMoonStars } from '@tabler/icons-react'
 import { HeaderSearchProps } from '@/types'
 import { TWHomeBuilderBucketURL } from '@/config'
 import { useRouter } from 'next/router'
 
-const useStyles = createStyles((theme) => ({
-	header: {
-		position: 'sticky',
-		top: 0,
-		backgroundColor:
-			theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-		transition: 'box-shadow 150ms ease',
-		zIndex: 10,
-		borderBottom: `${rem(1)} double ${theme.colors.red[3]}`,
+const useStyles = createStyles(
+	(
+		theme,
+		{
+			isScrolled,
+			isPaintBackgroundColor,
+		}: { isScrolled: boolean; isPaintBackgroundColor: boolean }
+	) => ({
+		header: {
+			height: '3.5rem',
+			position: 'fixed',
+			top: 0,
+			backgroundColor: isScrolled
+				? theme.colorScheme === 'dark'
+					? theme.colors.dark[7]
+					: theme.colors.red[5]
+				: isPaintBackgroundColor
+				? theme.colorScheme === 'dark'
+					? theme.colors.dark[7]
+					: theme.colors.red[5]
+				: 'transparent',
+			transition: 'all 0.3s ease',
+			zIndex: 10,
+			borderBottom: isScrolled ? `${rem(1)} double ${theme.colors.red[3]}` : 0,
 
-		'&::after': {
-			content: '""',
-			position: 'absolute',
-			left: 0,
-			right: 0,
-			bottom: 0,
-			backgroundColor:
-				theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-			borderBottom: 0,
+			'&::after': {
+				content: '""',
+				position: 'absolute',
+				left: 0,
+				right: 0,
+				bottom: 0,
+			},
 		},
-	},
 
-	inner: {
-		height: rem(56),
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
-
-	links: {
-		[theme.fn.smallerThan('sm')]: {
-			display: 'none',
+		inner: {
+			height: rem(56),
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center',
 		},
-	},
 
-	burger: {
-		[theme.fn.largerThan('sm')]: {
-			display: 'none',
+		links: {
+			[theme.fn.smallerThan('sm')]: {
+				display: 'none',
+			},
 		},
-	},
 
-	link: {
-		cursor: 'pointer',
-		display: 'block',
-		lineHeight: 1,
-		padding: `${rem(8)} ${rem(12)}`,
-		borderRadius: theme.radius.sm,
-		textDecoration: 'none',
-		color:
-			theme.colorScheme === 'dark'
-				? theme.colors.dark[0]
-				: theme.colors.gray[7],
-		fontSize: theme.fontSizes.sm,
-		fontWeight: 500,
-
-		'&:hover': {
-			backgroundColor:
-				theme.colorScheme === 'dark'
-					? theme.colors.dark[6]
-					: theme.colors.red[6],
-			color: theme.white,
+		burger: {
+			[theme.fn.largerThan('sm')]: {
+				display: 'none',
+			},
 		},
-	},
 
-	linkLabel: {
-		marginRight: rem(5),
-	},
+		link: {
+			cursor: 'pointer',
+			display: 'block',
+			lineHeight: 1,
+			padding: `${rem(8)} ${rem(12)}`,
+			borderRadius: theme.radius.sm,
+			textDecoration: 'none',
+			color: isScrolled
+				? theme.colorScheme === 'dark'
+					? theme.colors.dark[0]
+					: theme.white
+				: 'white',
+			fontSize: theme.fontSizes.sm,
+			fontWeight: 500,
 
-	logoTitle: {
-		color:
-			theme.colorScheme === 'dark'
-				? theme.colors.dark[0]
-				: theme.colors.gray[7],
-	},
-}))
+			'&:hover': {
+				backgroundColor:
+					theme.colorScheme === 'dark'
+						? theme.colors.dark[6]
+						: theme.colors.red[6],
+				color: theme.white,
+			},
+		},
+
+		linkLabel: {
+			marginRight: rem(5),
+		},
+
+		logoTitle: {
+			color: isScrolled
+				? theme.colorScheme === 'dark'
+					? theme.colors.dark[0]
+					: theme.white
+				: 'white',
+		},
+	})
+)
 
 export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 	const theme = useMantineTheme()
+	const [scroll] = useWindowScroll()
 	const { pathname, push } = useRouter()
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 	const [opened, { toggle, close }] = useDisclosure(false)
-	const { classes } = useStyles()
+	const { classes } = useStyles({
+		isScrolled: scroll.y > 0,
+		isPaintBackgroundColor: pathname !== '/' ? true : false,
+	})
 
 	const onClickLogo = () => {
 		if (pathname === '/') {

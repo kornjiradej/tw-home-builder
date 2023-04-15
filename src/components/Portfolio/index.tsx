@@ -1,2 +1,2 @@
-export * from './detail'
+export { default as Detail } from './detail'
 export * from './list'

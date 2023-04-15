@@ -6,10 +6,6 @@ import { PATH } from '@/config'
 const menusHeader: HeaderSearchProps = {
 	links: [
 		{
-			link: PATH.home,
-			label: 'หน้าแรก',
-		},
-		{
 			link: PATH.about,
 			label: 'เกี่ยวกับเรา',
 		},
