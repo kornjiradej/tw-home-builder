@@ -5,7 +5,7 @@
 const nextConfig = {
 	/* config options here */
 	env: {
-		BASE_PATH: process.env.BASE_PATH,
+		BASE_PATH: '',
 	},
 }
 
