@@ -9,6 +9,7 @@ import {
 	Card,
 	Tooltip,
 } from '@mantine/core'
+import { useRouter } from 'next/router'
 import reviews from '../../data/reviews.json'
 import { TWHomeBuilderBucketURL } from '@/config'
 
@@ -45,7 +46,7 @@ const useStyles = createStyles((theme) => ({
 	card: {
 		boxShadow: theme.shadows.md,
 		transition: 'transform 150ms ease, box-shadow 150ms ease',
-
+		cursor: 'pointer',
 		'&:hover': {
 			transform: 'scale(1.01)',
 			boxShadow: theme.shadows.md,
@@ -56,15 +57,17 @@ const useStyles = createStyles((theme) => ({
 
 export const PortfolioList = () => {
 	const { classes } = useStyles()
+	const { push } = useRouter()
+
+	const onClickCard = (id: string) => push(`portfolio/${id}`)
 
 	const cards = reviews.map((r) => (
 		<Card
 			key={r.title}
 			p='md'
 			radius='md'
-			component='a'
-			href={`portfolio/${r.id}`}
 			className={classes.card}
+			onClick={() => onClickCard(r.id)}
 		>
 			<AspectRatio ratio={1920 / 1080}>
 				<Image
