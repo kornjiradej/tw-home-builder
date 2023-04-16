@@ -90,6 +90,9 @@ const useStyles = createStyles(
 					? theme.colors.dark[0]
 					: theme.white
 				: theme.white,
+			[theme.fn.smallerThan('sm')]: {
+				color: theme.colorScheme === 'dark' ? 'white' : 'black',
+			},
 			fontSize: theme.fontSizes.sm,
 			fontWeight: 500,
 
