@@ -7,6 +7,8 @@ import {
 	Text,
 	rem,
 	LoadingOverlay,
+	Center,
+	Box,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 // import { TWHomeBuilderBucketURL } from '@/config'
@@ -26,17 +28,21 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 
 	container: {
 		height: rem(height), // 56 is the height of the navigation bar
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-		paddingBottom: `calc(${theme.spacing.lg} * 16)`,
 		zIndex: 1,
 		position: 'relative',
 		[theme.fn.smallerThan('sm')]: {
 			height: rem(500),
 			paddingBottom: `calc(${theme.spacing.xl} * 3)`,
 		},
+	},
+	center: {
+		height: '100%',
+	},
+	box: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
 	},
 
 	title: {
@@ -87,21 +93,25 @@ export const Home = () => {
 					zIndex={0}
 				/>
 				<Container className={classes.container}>
-					<Title className={classes.title}>TW Home Builder</Title>
-					<Text className={classes.description} size='xl' mt='xl'>
-						สร้างบ้าน ออกแบบ เขียนแบบ รีโนเวทบ้าน Interior Designer
-						สร้างบ้านสวยตามใจคุณ
-					</Text>
-					<Link to='section-one' smooth duration={500}>
-						<Button
-							variant='gradient'
-							size='xl'
-							radius='xl'
-							className={classes.control}
-						>
-							บริการของเรา
-						</Button>
-					</Link>
+					<Center className={classes.center}>
+						<Box className={classes.box}>
+							<Title className={classes.title}>TW Home Builder</Title>
+							<Text className={classes.description} size='xl' mt='xl'>
+								สร้างบ้าน ออกแบบ เขียนแบบ รีโนเวทบ้าน Interior Designer
+								สร้างบ้านสวยตามใจคุณ
+							</Text>
+							<Link to='section-one' smooth duration={500}>
+								<Button
+									variant='gradient'
+									size='xl'
+									radius='xl'
+									className={classes.control}
+								>
+									บริการของเรา
+								</Button>
+							</Link>
+						</Box>
+					</Center>
 				</Container>
 			</section>
 		</Suspense>

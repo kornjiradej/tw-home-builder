@@ -21,22 +21,23 @@ import { Suspense } from 'react'
 import { PATH } from '@/config'
 
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
+	container: {
+		[theme.fn.largerThan('md')]: {
+			height: rem(height - 300),
+			minHeight: rem(700),
+		},
+		[theme.fn.smallerThan('md')]: {
+			marginTop: `calc(${theme.spacing.xl})`,
+			marginBottom: `calc(${theme.spacing.xl} * 3)`,
+		},
+	},
+
 	inner: {
 		display: 'flex',
 		justifyContent: 'space-between',
 		paddingTop: `calc(${theme.spacing.xl})`,
 		paddingBottom: `calc(${theme.spacing.xl})`,
 		height: '100%',
-	},
-
-	container: {
-		[theme.fn.largerThan('md')]: {
-			height: rem(height - 300),
-		},
-		[theme.fn.smallerThan('md')]: {
-			marginTop: `calc(${theme.spacing.xl})`,
-			marginBottom: `calc(${theme.spacing.xl} * 3)`,
-		},
 	},
 
 	content: {

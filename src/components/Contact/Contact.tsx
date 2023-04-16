@@ -24,6 +24,7 @@ import { Player } from '@lottiefiles/react-lottie-player'
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	container: {
 		height: rem(height - 72),
+		minHeight: rem(900),
 	},
 	inner: {
 		display: 'flex',
