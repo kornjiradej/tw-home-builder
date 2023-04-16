@@ -89,7 +89,7 @@ const useStyles = createStyles(
 				? theme.colorScheme === 'dark'
 					? theme.colors.dark[0]
 					: theme.white
-				: 'white',
+				: theme.white,
 			fontSize: theme.fontSizes.sm,
 			fontWeight: 500,
 
@@ -217,6 +217,7 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 						onClick={toggle}
 						className={classes.burger}
 						size='sm'
+						color='white'
 					/>
 					<Drawer
 						opened={opened}
