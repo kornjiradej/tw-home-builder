@@ -14,11 +14,16 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"baseUrl": ".",
+		"declaration": true, /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+		"sourceMap": true, /* Create source map files for emitted JavaScript files. */
+		"importHelpers": true, /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
 		"paths": {
 			"@/*": ["./src/*"],
-			"@/components/*": ["./src/components/*"]
+			"@/components/*": ["./src/components/*"],
+			"@/assets/*": ["./src/assets/*"],
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components", "src/assets"],
 	"exclude": ["node_modules"]
 }

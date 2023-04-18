@@ -11,15 +11,13 @@ import {
 	rem,
 	CopyButton,
 	Stack,
+	Box,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
-import {
-	IconBrandFacebook,
-	IconCheck,
-	IconMail,
-	IconPhoneCall,
-} from '@tabler/icons-react'
+import { IconCheck, IconMail, IconPhoneCall } from '@tabler/icons-react'
 import { Player } from '@lottiefiles/react-lottie-player'
+import FacebookIcon from '@/assets/FacebookIcon.svg'
+import LineChatIcon from '@/assets/lineChatIcon.svg'
 
 const useStyles = createStyles((theme, { height }: { height: number }) => ({
 	container: {
@@ -40,6 +38,11 @@ const useStyles = createStyles((theme, { height }: { height: number }) => ({
 			maxWidth: '100%',
 			marginLeft: 0,
 		},
+	},
+
+	paper: {
+		backgroundColor:
+			theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
 	},
 
 	title: {
@@ -93,7 +96,7 @@ export const ContactContent = () => {
 	}
 	return (
 		<Center className={classes.container} p='xl'>
-			<Paper shadow='lg' p='md' radius='md'>
+			<Paper shadow='lg' p='md' radius='md' className={classes.paper}>
 				<div className={classes.inner}>
 					<div className={classes.content}>
 						<Blockquote>
@@ -153,17 +156,23 @@ export const ContactContent = () => {
 							<CopyButton value='gb_boat'>
 								{({ copied, copy }) => (
 									<Button
-										color={copied ? 'teal' : 'red'}
-										onClick={copy}
+										leftIcon={<LineChatIcon width={25} />}
 										variant='subtle'
+										onClick={() =>
+											window.open('https://line.me/ti/p/wTczpRlKw2', '_blank')
+										}
 									>
-										{copied ? 'Copied LINE_ID' : 'LINE: gb_boat'}
+										gb_boat
 									</Button>
 								)}
 							</CopyButton>
 							<Button
 								variant='subtle'
-								leftIcon={<IconBrandFacebook />}
+								leftIcon={
+									<Box ml={2}>
+										<FacebookIcon width={20} />
+									</Box>
+								}
 								onClick={() =>
 									window.open(
 										'https://www.facebook.com/Twhomebuilder',
@@ -171,6 +180,7 @@ export const ContactContent = () => {
 									)
 								}
 							>
+								{/* <FacebookIcon /> */}
 								Twhomebuilder
 							</Button>
 						</Stack>

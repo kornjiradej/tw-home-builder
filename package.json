@@ -36,5 +36,8 @@
 		"react-dom": "18.2.0",
 		"react-scroll": "^1.8.9",
 		"typescript": "5.0.3"
+	},
+	"devDependencies": {
+		"@svgr/webpack": "^7.0.0"
 	}
 }

@@ -116,6 +116,12 @@ const useStyles = createStyles(
 					: theme.white
 				: 'white',
 		},
+
+		drawer: {
+			body: {
+				maxWidth: 250,
+			},
+		},
 	})
 )
 
@@ -228,6 +234,8 @@ export const HeaderMenu = ({ links }: HeaderSearchProps) => {
 						title='Menu'
 						overlayProps={{ opacity: 0.5, blur: 4 }}
 						position='right'
+						className={classes.drawer}
+						size='15rem'
 					>
 						{items}
 						<Box m={'xs'}>{switchTheme}</Box>
