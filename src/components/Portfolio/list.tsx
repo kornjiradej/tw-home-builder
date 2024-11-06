@@ -21,6 +21,7 @@ const useStyles = createStyles((theme) => ({
 		cursor: 'pointer',
 	},
 	container: {
+		minHeight: 'calc(100dvh - 282px)',
 		margin: 'auto',
 		paddingTop: `calc(${theme.spacing.xl} * 3)`,
 		paddingBottom: `calc(${theme.spacing.xl} * 2)`,
@@ -53,7 +54,7 @@ const useStyles = createStyles((theme) => ({
 		},
 	},
 	tooltip: {},
-}))
+}));
 
 export const PortfolioList = () => {
 	const { classes } = useStyles()

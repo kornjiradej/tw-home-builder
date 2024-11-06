@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
 	description: {
 		color: theme.colorScheme === 'dark' ? theme.white : theme.colors.gray[7],
 	},
-}))
+}));
 
 const Detail = () => {
 	const {
